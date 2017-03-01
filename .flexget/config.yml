@@ -1,0 +1,79 @@
+templates:
+
+  torrent:
+    transmission:
+      addpaused: No
+
+  tv:
+    thetvdb_lookup: yes
+    transmission:
+      path: /media/tosh500/MediaLibrary/TVShows/{{series_name}}/Season {{series_season}}
+
+  movies:
+    imdb_lookup: yes
+    seen_movies: strict
+    quality:
+      - 720p webrip+
+    imdb:
+      min_score: 6.2
+      min_votes: 2000
+      min_year: 2016
+      reject_genres:
+        - horror
+    transmission:
+      path: /media/tosh500/MediaLibrary/Movies/{{imdb_name}} ({{imdb_year}})
+
+  notify:
+    notify:
+      task:
+        template: html
+        via:
+          - email:
+              from: *****<*****@gmail.com>
+              to: *****@gmail.com
+              smtp_host: smtp.gmail.com
+              smtp_port: 587
+              smtp_username: *****
+              smtp_password: *****
+              smtp_tls: yes
+              html: yes
+
+tasks:
+
+  showrss:
+    rss: http://showrss.info/user/*****.rss?magnets=true&namespaces=true&name=null&quality=null&re=null
+    all_series: yes
+    template:
+      - torrent
+      - tv
+      - notify
+
+  yifi:
+    rss: https://yts.ag/rss/0/all/all/0
+    quality:
+      - 720p
+    template:
+      - movies
+      - torrent
+      - notify
+
+  shaanig:
+    exec:
+      on_start:
+        phase: ~/bin/rss2flexget.py "https://www.shaanig.org/external.php?type=RSS2&forumids=30" /tmp/rss-shaanig.txt
+    rss: file:///tmp/rss-shaanig.txt
+    template:
+      - movies
+      - torrent
+      - notify
+
+  mkvcage:
+    exec:
+      on_start:
+        phase: ~/bin/rss2flexget.py "http://www.mkvcage.com/feed/" /tmp/rss-mkvcage.txt
+    rss: file:///tmp/rss-mkvcage.txt
+    template:
+      - movies
+      - torrent
+      - notify
+
