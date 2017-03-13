@@ -29,3 +29,6 @@
 
 # Remove completed torrents
 */5 * * * * ~/bin/tranmissionRemoveCompleted.py
+
+# Resume paused torrents
+0 2 * * * ~/bin/tranmissionResumeDownload.py
