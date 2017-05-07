@@ -9,7 +9,7 @@ templates:
   tv:
     thetvdb_lookup: yes
     exists_series: 
-      - /media/tosh500/MediaLibrary/TVShows
+      - '/media/tosh500/MediaLibrary/TVShows/{{series_name}}'
     transmission:
       path: /media/tosh500/Torrent/Completed/TVShows/{{series_name}}/Season {{series_season}}
 
@@ -17,7 +17,7 @@ templates:
     imdb_lookup: yes
     seen_movies: strict
     exists:
-      - /media/tosh500/MediaLibrary/Movies
+      - '/media/tosh500/MediaLibrary/Movies'
     quality:
       - 720p webrip+
     imdb:
