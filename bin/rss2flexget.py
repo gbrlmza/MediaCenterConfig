@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 '''
 Convert ShAaNiG/MkvCage RSS feeds to be able to use them on flexget
 
@@ -78,7 +78,7 @@ def main():
         request = requests.get(rss_url)
         request.raise_for_status()
         if request.status_code == requests.codes.ok:
-            etree = convert_items(request.text)
+            etree = convert_items(request.text.encode("UTF-8"))
             etree.write(xml_file_path)
     except Exception as exc:
         print('There was an error accessing the feed: %s' % (exc))

@@ -24,9 +24,6 @@
 # Flexget
 */30 * * * * /usr/local/bin/flexget --cron execute
 
-# Shutdown HDMI
-*/30 * * * * /opt/vc/bin/tvservice -o
-
 # Remove completed torrents
 */5 * * * * ~/bin/tranmissionRemoveCompleted.py
 
