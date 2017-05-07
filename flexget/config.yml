@@ -4,7 +4,11 @@ templates:
 
   torrent:
     transmission:
-      addpaused: No
+      addpaused: no
+
+  torrent-paused:
+    transmission:
+      addpaused: yes  
 
   tv:
     thetvdb_lookup: yes
@@ -65,8 +69,8 @@ tasks:
     quality:
       - 720p
     template:
+      - torrent-paused
       - movies
-      - torrent
       - notify
 
   shaanig:
@@ -75,8 +79,8 @@ tasks:
         phase: ~/bin/rss2flexget.py "https://www.shaanig.org/external.php?type=RSS2&forumids=30" /tmp/rss-shaanig.txt
     rss: file:///tmp/rss-shaanig.txt
     template:
+      - torrent-paused
       - movies
-      - torrent
       - notify
 
   mkvcage:
@@ -85,7 +89,7 @@ tasks:
         phase: ~/bin/rss2flexget.py "http://www.mkvcage.com/feed/" /tmp/rss-mkvcage.txt
     rss: file:///tmp/rss-mkvcage.txt
     template:
+      - torrent-paused
       - movies
-      - torrent
       - notify
 
