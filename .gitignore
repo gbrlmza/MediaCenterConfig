@@ -1,0 +1,8 @@
+# Flexget configuration only
+config/flexget/*
+!config/flexget/config.yml
+!config/flexget/variables.yml.example
+
+# Deluge configuration only
+config/deluge/*
+!config/deluge/core.conf

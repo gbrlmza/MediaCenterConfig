@@ -1,7 +1,0 @@
-telegram:
-  bot:
-    token: <TELEGRAM_BOT_TOKEN>
-    recipient: <TELEGRAM_USER_ALIAS>
-
-feed:
-  showrss: <SHOWRSS_FEED>

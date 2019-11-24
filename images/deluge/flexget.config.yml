@@ -1,0 +1,6 @@
+# Dummy configuration to run flexget daemon
+tasks:
+  yify:
+    rss: https://yts.ag/rss/0/all/all/0
+    quality:
+      - 720p
