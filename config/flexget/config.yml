@@ -37,7 +37,6 @@ templates:
         - piratebay: yes
         - argenteam:
             force_subtitles: yes
-      release_estimations: ignore
 
 tasks:
 
