@@ -6,3 +6,7 @@ config/flexget/*
 # Deluge configuration only
 config/deluge/*
 !config/deluge/core.conf
+
+# Transmission configuration only
+config/ransmission/*
+!config/transmission/settings.json

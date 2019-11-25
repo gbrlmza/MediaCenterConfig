@@ -1,16 +1,16 @@
 version: '3'
 services:
 
-  deluge:
-    build: images/deluge/
-    container_name: mboxdeluge
-    hostname: deluge
+  torrent:
+    build: images/torrent/
+    container_name: mboxtorrent
+    hostname: torrent
     restart: unless-stopped
     tty: true
     ports:
     - 8112:8112
     volumes:
-    - ./config/deluge:/deluge
+    - ./config/transmission:/transmission
     - ./config/flexget:/flexget
 
   plex:
