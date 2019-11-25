@@ -1,12 +1,13 @@
-config/*
-
 # Flexget configuration
-!config/flexget/config.yml
-!config/flexget/variables.yml.example
+/config/flexget/*
+!/config/flexget/config.yml
+!/config/flexget/variables.yml.example
 
 # Transmission configuration
-!config/transmission/settings.json
+/config/transmission/*
+!/config/transmission/settings.json
 
 # Plex empty files
-!config/plex/config/.empty
-!config/plex/temp/.empty
+#/config/plex/*
+!/config/plex/config/.empty
+!/config/plex/temp/.empty
