@@ -5,7 +5,7 @@
 /usr/bin/deluge-web -c /deluge
 
 # Flexget Daemon
-/usr/local/bin/flexget -c /flexget/config.yml daemon start -d --autoreload-config
+#/usr/local/bin/flexget -c /flexget/config.yml daemon start -d --autoreload-config
 
 # Keep it running
 tail -f /dev/null

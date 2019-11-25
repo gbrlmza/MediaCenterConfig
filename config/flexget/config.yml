@@ -1,3 +1,5 @@
+variables: variables.yml
+
 templates:
 
   download:
@@ -37,17 +39,38 @@ templates:
         - piratebay: yes
         - argenteam:
             force_subtitles: yes
+  
+  notify:
+    notify:
+      entries:
+        message: |+
+          {% if imdb_name is defined %}
+          *New Movie*
+          [{{imdb_name}} ({{imdb_year}})]({{imdb_url|d('')}})
+          Score: {{imdb_score}}/10 - {{imdb_votes}} votes
+          {% endif %}
+          {% if tvdb_series_name is defined %}
+          *New Episode*
+          {{ title }}
+          {% endif %}
+        via:
+          - telegram:
+              bot_token: '{? telegram.bot.token ?}'
+              parse_mode: markdown
+              recipients:
+                - username: '{? telegram.bot.recipient ?}'
 
 tasks:
 
   showrss:
     priority: 1
-    rss: 'http://showrss.info/user/125324.rss?magnets=true&namespaces=true&name=null&quality=hd&re=no'
+    rss: '{? feed.showrss ?}'
     all_series: yes
     accept_all: yes
     template:
       - tv
       - download
+      - notify
 
   yts:
     priority: 1
@@ -58,6 +81,7 @@ tasks:
       - movies
       - movies-filter
       - download
+      - notify
 
   wanted-movies:
     priority: 3
@@ -65,6 +89,7 @@ tasks:
       - search
       - movies
       - download
+      - notify
     quality: 720p+ webrip+
     list_match:
       from:
@@ -76,13 +101,13 @@ tasks:
       account: gbrlmza
       list: movies
       type: movies
-    limit:
-      amount: 10
-      from:
-        trakt_list:
-          account: gbrlmza
-          list: trending
-          type: movies
+    #limit:
+    #  amount: 10
+    #  from:
+    #    trakt_list:
+    #      account: gbrlmza
+    #      list: trending
+    #      type: movies
     accept_all: yes
     list_add:
       - movie_list: wanted_movies

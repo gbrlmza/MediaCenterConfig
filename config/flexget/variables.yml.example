@@ -1,0 +1,7 @@
+telegram:
+  bot:
+    token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    recipient: UserName
+
+feed:
+  showrss: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

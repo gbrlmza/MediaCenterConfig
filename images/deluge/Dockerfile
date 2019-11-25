@@ -6,9 +6,9 @@ RUN apt-get update && \
     add-apt-repository ppa:deluge-team/stable && \
     apt-get update && \
     apt-get install -y locales python3-pip deluged deluge-web deluge-console && \
-    pip3 install flexget deluge-client
+    pip3 install flexget deluge-client python-telegram-bot
 
-# Set the locale
+# Set Locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
     locale-gen
 ENV LANG en_US.UTF-8  
