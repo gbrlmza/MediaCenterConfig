@@ -8,6 +8,6 @@
 !/config/transmission/settings.json
 
 # Plex empty files
-#/config/plex/*
+/config/plex/*
 !/config/plex/config/.empty
 !/config/plex/temp/.empty
