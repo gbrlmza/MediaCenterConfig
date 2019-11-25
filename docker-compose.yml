@@ -10,7 +10,7 @@ services:
     ports:
     - 8112:8112
     volumes:
-    - ./config/deluge:/config
+    - ./config/deluge:/deluge
     - ./config/flexget:/flexget
 
   plex:
@@ -32,3 +32,4 @@ services:
     #- <path/to/plex/database>:/config
     #- <path/to/transcode/temp>:/transcode
     #- <path/to/media>:/data
+    

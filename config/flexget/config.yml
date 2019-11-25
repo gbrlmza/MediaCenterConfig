@@ -1,7 +1,89 @@
+templates:
 
-# Dummy configuration to run flexget daemon
+  download:
+    deluge:
+      config_path: /deluge/
+      magnetization_timeout: 30
+      main_file_only: yes
+      hide_sparse_files: no
+      queue_to_top: yes
+  
+  tv:
+    thetvdb_lookup: yes
+    set:
+      move_completed_path: /downloads/completed/tv-shows/{{series_name}}/Season {{series_season}}
+      label: flexget-tv
+
+  movies:
+    imdb_lookup: yes
+    seen_movies: strict
+    set:
+      move_completed_path: /downloads/completed/movies/{{imdb_name}} ({{imdb_year}})
+      label: flexget-movies
+  
+  movies-filter:
+    imdb:
+      min_score: 6.2
+      min_votes: 2000
+      min_year: 2019
+      reject_genres:
+        - horror
+
+  search:
+    discover:
+      what:
+        - movie_list: wanted_movies
+      from:
+        - piratebay: yes
+        - argenteam:
+            force_subtitles: yes
+      release_estimations: ignore
+
 tasks:
-  yify:
-    rss: https://yts.ag/rss/0/all/all/0
+
+  showrss:
+    priority: 1
+    rss: 'http://showrss.info/user/125324.rss?magnets=true&namespaces=true&name=null&quality=hd&re=no'
+    all_series: yes
+    accept_all: yes
+    template:
+      - tv
+      - download
+
+  yts:
+    priority: 1
+    rss: https://yts.lt/rss/0/all/all/0
     quality:
-      - 720p
+      - 720p+
+    template:  
+      - movies
+      - movies-filter
+      - download
+
+  wanted-movies:
+    priority: 3
+    template:
+      - search
+      - movies
+      - download
+    quality: 720p+ webrip+
+    list_match:
+      from:
+        - movie_list: wanted_movies
+
+  update-wanted-movies:
+    priority: 2
+    trakt_list:
+      account: gbrlmza
+      list: movies
+      type: movies
+    limit:
+      amount: 10
+      from:
+        trakt_list:
+          account: gbrlmza
+          list: trending
+          type: movies
+    accept_all: yes
+    list_add:
+      - movie_list: wanted_movies
