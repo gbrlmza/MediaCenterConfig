@@ -27,5 +27,5 @@ RUN chmod +x /entrypoint.sh
 CMD ["/entrypoint.sh"]
 
 # Ports and Volumes
-EXPOSE 8112 58846 58946 58946/udp
+EXPOSE 9091 51413/tcp 51413/udp
 VOLUME /transmission /data /flexget

@@ -8,7 +8,9 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-    - 8112:8112
+      - 9991:9091
+      - 51413:51413/tcp
+      - 51413:51413/udp
     volumes:
     - ./config/transmission:/transmission
     - ./config/flexget:/flexget

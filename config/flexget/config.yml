@@ -3,25 +3,19 @@ variables: variables.yml
 templates:
 
   download:
-    deluge:
-      config_path: /deluge/
-      magnetization_timeout: 30
-      main_file_only: yes
-      hide_sparse_files: no
-      queue_to_top: yes
+    transmission:
+      add_paused: no
   
   tv:
     thetvdb_lookup: yes
     set:
-      move_completed_path: /downloads/completed/tv-shows/{{series_name}}/Season {{series_season}}
-      label: flexget-tv
+      path: /data/torrent/completed/tvshows/{{series_name}}/Season {{series_season}}
 
   movies:
     imdb_lookup: yes
     seen_movies: strict
     set:
-      move_completed_path: /downloads/completed/movies/{{imdb_name}} ({{imdb_year}})
-      label: flexget-movies
+      path: /data/torrent/completed/movies/{{imdb_name}} ({{imdb_year}})
   
   movies-filter:
     imdb:
@@ -83,31 +77,31 @@ tasks:
       - download
       - notify
 
-  wanted-movies:
-    priority: 3
-    template:
-      - search
-      - movies
-      - download
-      - notify
-    quality: 720p+ webrip+
-    list_match:
-      from:
-        - movie_list: wanted_movies
-
-  update-wanted-movies:
-    priority: 2
-    trakt_list:
-      account: gbrlmza
-      list: movies
-      type: movies
-    #limit:
-    #  amount: 10
-    #  from:
-    #    trakt_list:
-    #      account: gbrlmza
-    #      list: trending
-    #      type: movies
-    accept_all: yes
-    list_add:
-      - movie_list: wanted_movies
+#  wanted-movies:
+#    priority: 3
+#    template:
+#      - search
+#      - movies
+#      - download
+#      - notify
+#    quality: 720p+ webrip+
+#    list_match:
+#      from:
+#        - movie_list: wanted_movies
+#
+#  update-wanted-movies:
+#    priority: 2
+#    trakt_list:
+#      account: gbrlmza
+#      list: movies
+#      type: movies
+#    #limit:
+#    #  amount: 10
+#    #  from:
+#    #    trakt_list:
+#    #      account: gbrlmza
+#    #      list: trending
+#    #      type: movies
+#    accept_all: yes
+#    list_add:
+#      - movie_list: wanted_movies
