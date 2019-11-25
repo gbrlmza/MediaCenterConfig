@@ -1,13 +1,13 @@
 # Flexget configuration
-/config/flexget/*
 !/config/flexget/config.yml
 !/config/flexget/variables.yml.example
+/config/flexget/*
 
 # Transmission configuration
-/config/transmission/*
 !/config/transmission/settings.json
+/config/transmission/*
 
 # Plex empty files
-/config/plex/*
 !/config/plex/config/.empty
 !/config/plex/temp/.empty
+/config/plex/*
