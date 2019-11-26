@@ -11,3 +11,11 @@
 !/config/plex/config/.empty
 !/config/plex/temp/.empty
 /config/plex/*
+
+# Data directory structure
+/data/*
+!/data/downloads/completed/.empty
+!/data/downloads/inprogress/.empty
+!/data/downloads/watch/.empty
+!/data/library/movies/.empty
+!/data/library/tvshows/.empty
