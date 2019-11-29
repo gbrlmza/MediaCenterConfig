@@ -1,3 +1,5 @@
+.DS_Store
+
 # Flexget configuration
 !/config/flexget/config.yml
 !/config/flexget/variables.yml.example

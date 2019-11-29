@@ -26,6 +26,13 @@ COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 CMD ["/entrypoint.sh"]
 
+# Contrab
+COPY bin/tranmissionRemoveCompleted.py /usr/local/bin/
+RUN chmod +x /usr/local/bin/tranmissionRemoveCompleted.py
+COPY bin/tranmissionResumeDownload.py /usr/local/bin/
+RUN chmod +x /usr/local/bin/tranmissionResumeDownload.py
+COPY crontab.cfg /etc/cron.d/crontab.cfg
+
 # Ports and Volumes
 EXPOSE 9091 51413/tcp 51413/udp
 VOLUME /transmission /data /flexget
