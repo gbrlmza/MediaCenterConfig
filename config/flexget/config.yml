@@ -45,7 +45,7 @@ templates:
           {% endif %}
           {% if tvdb_series_name is defined %}
           *New Episode*
-          {{ title }}
+          {{tvdb_series_name}} - S{{'%02d' % tvdb_season}}E{{'%02d' % tvdb_episode}}
           {% endif %}
         via:
           - telegram:
@@ -60,7 +60,8 @@ tasks:
     priority: 1
     rss: '{? feed.showrss ?}'
     all_series: yes
-    accept_all: yes
+    quality:
+      - 720p+
     template:
       - tv
       - download
