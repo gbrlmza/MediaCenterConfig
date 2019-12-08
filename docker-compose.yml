@@ -1,23 +1,73 @@
 version: '3'
 services:
 
-  torrent:
-    build: images/torrent/
-    container_name: mboxtorrent
-    hostname: torrent
-    restart: unless-stopped
-    tty: true
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=America/Argentina/Mendoza
+      - TRANSMISSION_WEB_HOME=/combustion-release/
+    volumes:
+      - ./config/transmission:/config
+      - ./data/downloads:/downloads
     ports:
       - 9991:9091
-      - 51413:51413/tcp
+      - 51413:51413
       - 51413:51413/udp
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=America/Argentina/Mendoza
+      - UMASK_SET=022
     volumes:
-      - ./config/transmission:/transmission
-      - ./config/flexget:/flexget
-      - ./data/:/data
+      - ./config/sonarr:/config
+      - ./data/tv:/tv
+      - ./data/downloads/completed:/downloads
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=America/Argentina/Mendoza
+      - UMASK_SET=022
+    volumes:
+      - ./config/radarr:/config
+      - ./data/movies:/movies
+      - ./data/downloads/completed:/downloads
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+
+  bazarr:
+    image: linuxserver/bazarr
+    container_name: bazarr
+    environment:
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=America/Argentina/Mendoza
+      - UMASK_SET=022
+    volumes:
+      - ./config/bazarr:/config
+      - ./data/movies:/movies
+      - ./data/tv:/tv
+    ports:
+      - 6767:6767
+    restart: unless-stopped
 
   plex:
-    image: plexinc/pms-docker:plexpass
+    image: plexinc/pms-docker:latest
     container_name: mboxplex
     hostname: plex
     restart: unless-stopped
@@ -33,9 +83,3 @@ services:
       - 32414:32414/udp
     volumes:
       - ./data:/data
-      - plextemp:/transcode
-      - plexconfig:/config
-
-volumes:
-  plexconfig:
-  plextemp:

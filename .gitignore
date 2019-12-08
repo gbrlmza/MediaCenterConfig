@@ -1,10 +1,5 @@
 .DS_Store
 
-# Flexget configuration
-!/config/flexget/config.yml
-!/config/flexget/variables.yml.example
-/config/flexget/*
-
 # Transmission configuration
 !/config/transmission/settings.json
 /config/transmission/*
@@ -14,10 +9,24 @@
 !/config/plex/temp/.empty
 /config/plex/*
 
+# Radarr
+/config/radarr/*
+!/config/radarr/config.xml
+!/config/radarr/nzbdrone.db
+
+# Sonarr
+/config/sonarr/*
+!/config/sonarr/config.xml
+!/config/sonarr/nzbdrone.db
+
+# Bazarr
+/config/bazarr/cache/
+/config/bazarr/log/
+/config/bazarr/db/
+
 # Data directory structure
-/data/*
 !/data/downloads/completed/.empty
-!/data/downloads/inprogress/.empty
-!/data/downloads/watch/.empty
-!/data/library/movies/.empty
-!/data/library/tvshows/.empty
+!/data/downloads/incomplete/.empty
+!/data/movies/.empty
+!/data/tv/.empty
+#/data/*
