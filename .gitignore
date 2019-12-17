@@ -25,8 +25,8 @@
 /config/bazarr/db/
 
 # Data directory structure
-!/data/downloads/completed/.empty
+!/data/downloads/complete/.empty
 !/data/downloads/incomplete/.empty
 !/data/movies/.empty
 !/data/tv/.empty
-/data/*
+#/data/*

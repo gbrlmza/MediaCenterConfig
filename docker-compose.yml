@@ -29,7 +29,7 @@ services:
     volumes:
       - ./config/sonarr:/config
       - ./data/tv:/tv
-      - ./data/downloads/completed:/downloads
+      - ./data/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -45,7 +45,7 @@ services:
     volumes:
       - ./config/radarr:/config
       - ./data/movies:/movies
-      - ./data/downloads/completed:/downloads
+      - ./data/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
