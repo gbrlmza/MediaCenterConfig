@@ -1,7 +1,15 @@
-# MediaCenterConfig
+# Media Center
 
-Configuration files for media center:
-- RaspberryPi3(with Raspbian Lite, powering external HDD and Chromecast2 with 2.5A power supply)
-- Plex Media Server
-- Transmission Daemon
-- Flexget
+Plex + Transmission Daemon + Flexget on Docker
+
+## Instructions
+
+- Clone the repo
+- Copy/rename variables.yml.example to variables.yml and set required configs
+- Run `docker-compose up -d`
+- Done!
+
+## Apps
+
+- Plex: http://localhost:32400/web/
+- Transmission: http://localhost:9991/
