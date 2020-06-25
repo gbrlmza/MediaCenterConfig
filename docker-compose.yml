@@ -11,7 +11,7 @@ services:
       - TRANSMISSION_WEB_HOME=/combustion-release/
     volumes:
       - ./config/transmission:/config
-      - ./data/downloads:/downloads
+      - /mnt/drive/downloads:/downloads
     ports:
       - 9991:9091
       - 51413:51413
@@ -28,8 +28,8 @@ services:
       - UMASK_SET=022
     volumes:
       - ./config/sonarr:/config
-      - ./data/tv:/tv
-      - ./data/downloads:/downloads
+      - /mnt/drive/tv:/tv
+      - /mnt/drive/downloads:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -44,8 +44,8 @@ services:
       - UMASK_SET=022
     volumes:
       - ./config/radarr:/config
-      - ./data/movies:/movies
-      - ./data/downloads:/downloads
+      - /mnt/drive/movies:/movies
+      - /mnt/drive/downloads:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -60,8 +60,8 @@ services:
       - UMASK_SET=022
     volumes:
       - ./config/bazarr:/config
-      - ./data/movies:/movies
-      - ./data/tv:/tv
+      - /mnt/drive/movies:/movies
+      - /mnt/drive/tv:/tv
     ports:
       - 6767:6767
     restart: unless-stopped
@@ -82,4 +82,23 @@ services:
       - 32413:32413/udp
       - 32414:32414/udp
     volumes:
-      - ./data:/data
+      - /mnt/drive:/data
+  netdata:
+    image: netdata/netdata
+    container_name: netdata
+    hostname: odroid
+    ports:
+      - 19999:19999
+    restart: unless-stopped
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
