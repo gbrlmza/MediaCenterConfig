@@ -69,7 +69,7 @@ services:
   plex:
     image: plexinc/pms-docker:latest
     container_name: mboxplex
-    hostname: plex
+    hostname: odroid
     restart: unless-stopped
     ports:
       - 32400:32400/tcp
@@ -102,3 +102,6 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
+volumes:
+  netdatalib:
+  netdatacache:
